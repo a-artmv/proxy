@@ -49,14 +49,14 @@ public:
         const char *arg = nullptr;
         for(int i = 1; i < argc && args_ok_; ++i){
             arg = argv[i++];
-            if(std::strcmp(arg, "-p")){
+            if(std::strcmp(arg, "-p") == 0){
                 args_ok_ = get_port(&proxy_port, argv[i]);
-            } else if(std::strcmp(arg, "-sh")){
+            } else if(std::strcmp(arg, "-sh") == 0){
                 auto host = gethostbyname(argv[i]);
                 if((args_ok_ = host)){
                     srv_host.s_addr = *reinterpret_cast<uint32_t *>(host->h_addr);
                 }
-            } else if(std::strcmp(arg, "-sp")){
+            } else if(std::strcmp(arg, "-sp") == 0){
                 args_ok_ = get_port(&srv_port, argv[i]);
             } else{
                 args_ok_ = false;
